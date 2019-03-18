@@ -1,0 +1,5 @@
+select SYSTEMNAME AS SYSTEMID, SYSDOWNMINS from ( 
+        select SYSTEMNAME, SUM(SYSDOWNMINS) AS SYSDOWNMINS from (
+          select DISTINCT a.SYSTEMNAME,a.SYSDOWNMINS from SYSDOWNTIME a where a.SYSTEMNAME IN 
+                (select SYSTEMID from GROUPS where GROUPNAME = :siebelid) and a.GMT >= (sysdate - :days)
+        ) GROUP BY SYSTEMNAME) WHERE SYSDOWNMINS > 0 ORDER BY SYSDOWNMINS DESC

@@ -1,0 +1,186 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+<style>
+
+.flex-container {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  
+  -webkit-flex-flow: row wrap;
+  justify-content: space-around;
+}
+p {
+    border-radius: 5px;
+    border-style: 1px solid;
+    padding: 10px; 
+    background: Lavender;
+    
+}
+#container1 {
+ width:100%;
+ text-align:center;
+}
+#container1 > div {
+ width: calc(100% / 5);  
+ display: inline-block;
+ vertical-align: top;   
+ text-align:center;
+ margin:1%;    
+ padding:10px;
+ zoom: 1
+}
+#container1 > div > span {
+    font-size: 300%;
+}
+
+.apphead {
+    font-size: 25px;
+}
+.critical {
+    background-color: crimson;
+}
+
+.major {
+    background-color: DarkOrange;
+}
+
+.minor {
+    background-color: gold;
+}
+.warning {
+    background-color: LightSkyBlue ;
+}
+
+/*
+#container2 {
+ width:100%;
+ text-align:center;
+}
+#container2 > div {
+ width: calc(170% / 8);  
+ display: inline-block;
+ vertical-align: top;   
+ text-align:center;
+ margin:1%;    
+ padding:10px;
+ zoom: 1
+}
+*/
+</style>
+<script type='text/javascript'>
+
+var id =<%-JSON.stringify(id)%>;
+
+function auto_load() {
+    $.ajax({
+        url: "http://10.10.7.93:8000/GetTotCustMessages/" + id,
+        cache: false
+        }).done(showtotals); 
+};
+    
+function showtotals(messages) {
+    // Totaliza alarmas por severidad
+    var critical_alarms = 0;
+    var major_alarms = 0;
+    var minor_alarms = 0;
+    $('.app,.node').remove();
+    $.each(messages,function () { 
+        var hostname = [];
+        var hostname = this.SYSTEMID.split(".")
+        if(!this.CRITICAL){this.CRITICAL=0;}
+        if(!this.MAJOR){this.MAJOR=0;}
+        if(!this.MINOR){this.MINOR=0;}
+        critical_alarms += this.CRITICAL;
+        major_alarms += this.MAJOR;
+        minor_alarms += this.MINOR;
+        
+        var appnospace = this.APPLICATION.replace(/\s+/g, '');
+        
+        var divappid = "#" + appnospace;
+        var divnodeid = "#" + appnospace + this.SYSTEMID;
+        var divapp = $(divappid);
+        var divnode = $(divapp).children(divnodeid);
+        htmlnode = '<p class="nodetext"><b>'+hostname[0] + '</b> <br />';
+        if(this.CRITICAL>0) {htmlnode += '<span class="badge critical">'+this.CRITICAL+'</span>'};
+        if(this.MAJOR>0) {htmlnode += '</span><span class="badge major">'+this.MAJOR+'</span>'};
+        if(this.MINOR>0) {htmlnode += '</span><span class="badge minor"> '+this.MINOR+'</span>'};
+        htmlnode +='</p>';
+              
+        
+        if($(divapp).length){
+            if ($(divnode).length){
+                $(divnode).show()
+            }   else {
+                $('<div id="'+divnodeid+'" class="popper node" data-popbox="pop1">'+htmlnode+'</div>')
+                .appendTo(divapp)
+            } 
+        } else { 
+            $('<div class="panel panel-default app"><div class="panel-heading apphead">'+this.APPLICATION+'</div><div id="'+appnospace+'" class="panel-body app"><div id="'+divnodeid+'">'+htmlnode+'</div>')
+            .appendTo('#container2')
+        }
+        
+    });
+    $("#total_critical").text(critical_alarms);
+    $("#total_major").text(major_alarms);
+    $("#total_minor").text(minor_alarms);
+    
+};
+
+
+
+
+$(document).ready(function(){
+        auto_load();
+   
+});
+
+setInterval(auto_load, 5000);
+</script>
+
+
+</head>
+<body class="container">
+
+    <header>
+        <% include ../partials/header %>
+    
+    </header>
+
+    <main>
+  
+    <div class=page-header">
+    <h1>Event Management</h1>
+    </div>
+    <h2>Event Counter by Severity</h2>
+      <div id="container1" class="flex-container">
+        <div>
+            <h2>Critical</h2><br />
+            <span id="total_critical" class="label critical"></span>
+        </div>
+        <div>
+            <h2>Major</h2><br />
+            <span id="total_major" class="label major"></span>
+        </div>
+        <div>
+            <h2>Minor</h2><br />
+            <span id="total_minor" class="label minor"></span>
+        </div>
+      </div>
+     <h2>Event distribution</h2>
+      <div id="container2" class="flex-container"> 
+      </div>
+    </main>
+</body>
+
+</html>

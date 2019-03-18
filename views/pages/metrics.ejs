@@ -1,0 +1,46 @@
+<!-- views/pages/metrics.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+<style>
+</style>
+<script type='text/javascript'>
+   var node =<%-JSON.stringify(node)%>;
+   $(document).ready(function(){
+        showmetrics();
+
+    });
+   
+   function showmetrics() {
+    
+        
+   }
+</script>
+      
+</script>
+</head>
+<body class="container">
+
+    <header>
+        <% include ../partials/header %>
+    
+    </header>
+
+    <main>
+      <div id="container1">
+       <div id="chart_div"></div>
+      </div>
+  
+  
+    </main>
+
+<!--    
+    <footer>
+        < include ../partials/footer > 
+    </footer>
+ -->
+    
+</body>
+</html>

@@ -1,0 +1,28 @@
+Example app listening at http://:::8000
+[0mGET /1-CNK1 [32m200 [0m16.790 ms - 5732[0m
+[0mGET /stylesheets/jquery-ui.min.css [32m200 [0m6.479 ms - 32103[0m
+[0mGET /stylesheets/bootstrap.min.css [32m200 [0m5.889 ms - 121200[0m
+[0mGET /javascripts/jquery.min.js [32m200 [0m0.917 ms - 86351[0m
+[0mGET /javascripts/bootstrap.min.js [32m200 [0m1.715 ms - 37045[0m
+[0mGET /javascripts/drag-drop.js [32m200 [0m2.088 ms - 18148[0m
+[0mGET /javascripts/jquery-ui.min.js [32m200 [0m0.493 ms - 253385[0m
+[0mGET /images/logo_header.jpg [32m200 [0m0.435 ms - 95143[0m
+[0mGET /images/favicon.ico [32m200 [0m1.502 ms - 680[0m
+[0mGET /api/messages/1-CNK1?_=1482936801651 [32m200 [0m118.026 ms - 334[0m
+GET /api/messages/1-CNK1 : Connection released
+[0mGET /api/messages/1-CNK1?_=1482936801652 [32m200 [0m78.045 ms - 334[0m
+GET /api/messages/1-CNK1 : Connection released
+[0mGET /api/messages/1-CNK1?_=1482936801653 [32m200 [0m67.022 ms - 334[0m
+GET /api/messages/1-CNK1 : Connection released
+[0mGET /api/messages/1-CNK1?_=1482936801654 [32m200 [0m58.973 ms - 334[0m
+GET /api/messages/1-CNK1 : Connection released
+[0mGET /api/messages/1-CNK1?_=1482936801655 [32m200 [0m65.052 ms - 334[0m
+GET /api/messages/1-CNK1 : Connection released
+[0mGET /api/messages/1-CNK1?_=1482936801656 [32m200 [0m67.692 ms - 334[0m
+GET /api/messages/1-CNK1 : Connection released
+[0mGET /api/messages/1-CNK1?_=1482936801657 [32m200 [0m66.972 ms - 334[0m
+GET /api/messages/1-CNK1 : Connection released
+[0mGET /api/messages/1-CNK1?_=1482936801658 [32m200 [0m65.966 ms - 334[0m
+GET /api/messages/1-CNK1 : Connection released
+[0mGET /api/messages/1-CNK1 [32m200 [0m68.802 ms - 334[0m
+GET /api/messages/1-CNK1 : Connection released

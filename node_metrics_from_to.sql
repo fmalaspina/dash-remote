@@ -1,0 +1,1 @@
+select * from L3_GLOBAL a where a.SYSTEMNAME = :id and a.GMT between TO_DATE(:date1,'YYYY-MM-DD HH24:MI:SS') and TO_DATE(:date2,'YYYY-MM-DD HH24:MI:SS') ORDER BY a.GMT ASC
